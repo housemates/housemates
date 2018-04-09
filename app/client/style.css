@@ -1,4 +1,6 @@
 .landing-background {
-  background: url('/images/digits-cover.jpg') no-repeat center center fixed;
+  background: url('/images/housemates-landing-cover.jpg') no-repeat center center fixed;
   background-size: cover;
+  height: 450px;
+  /*width: cover;*/
 }
