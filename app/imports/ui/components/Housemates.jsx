@@ -1,14 +1,13 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
-import AddNote from '/imports/ui/components/AddNote';
+import { withRouter } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
-class Profile extends React.Component {
+class Housemates extends React.Component {
   render() {
     return (
-        <Card centered>
+        <Card>
           <Card.Content>
             <Image floated='right' size='mini' src={this.props.contact.image} />
             <Card.Header>
@@ -22,10 +21,7 @@ class Profile extends React.Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <Link to={`/edit/${this.props.contact._id}`}>Edit</Link>
-          </Card.Content>
-          <Card.Content extra>
-            <AddNote owner={this.props.contact.owner} contactId={this.props.contact._id}/>
+            {this.props.contact.owner}
           </Card.Content>
         </Card>
     );
@@ -33,10 +29,9 @@ class Profile extends React.Component {
 }
 
 /** Require a document to be passed to this component. */
-Profile.propTypes = {
+Housemates.propTypes = {
   contact: PropTypes.object.isRequired,
-  notes: PropTypes.array.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(Profile);
+export default withRouter(Housemates);
