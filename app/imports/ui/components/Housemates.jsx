@@ -27,7 +27,7 @@ class Housemates extends React.Component {
     );
   }
 }
-
+// Accident
 /** Require a document to be passed to this component. */
 Housemates.propTypes = {
   contact: PropTypes.object.isRequired,
