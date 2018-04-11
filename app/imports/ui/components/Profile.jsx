@@ -38,4 +38,4 @@ class Profile extends React.Component {
       notes: PropTypes.array.isRequired,
     };
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-        -export default withRouter(Profile);
+        export default withRouter(Profile);
