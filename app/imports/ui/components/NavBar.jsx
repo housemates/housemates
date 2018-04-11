@@ -13,7 +13,7 @@ class NavBar extends React.Component {
     return (
       <Menu style={menuStyle} attached="top" borderless inverted color='blue'>
         <Menu.Item as={NavLink} activeClassName="" exact to="/">
-          <Header inverted as='h1'>House Mates</Header>
+          <Header inverted as='h1'>HouseMates</Header>
         </Menu.Item>
         {this.props.currentUser ? (
             [<Menu.Item as={NavLink} activeClassName="active" exact to="/profile" key='add'>View Profile</Menu.Item>,
