@@ -9,7 +9,9 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import Profile from '../pages/ViewProfile';
 import ListHousemates from '../pages/ListHousemates';
-import AddContact from '../pages/AddContact';
+import ListContactsAdmin from '../pages/ListContactsAdmin';
+// import AddContact from '../pages/AddContact';
+import CreateProfile from '../pages/CreateProfile';
 // import EditContact from '../pages/EditContact';
 import EditProfile from '../pages/EditProfile';
 import NotFound from '../pages/NotFound';
@@ -29,7 +31,7 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <ProtectedRoute path="/list" component={ListHousemates}/>
-              <ProtectedRoute path="/add" component={AddContact}/>
+              <ProtectedRoute path="/add" component={CreateProfile}/>
               <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/edit/:_id" component={EditProfile}/>
               <AdminProtectedRoute path="/admin" component={ListHousemates}/>
