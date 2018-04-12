@@ -1,5 +1,5 @@
 import React from 'react';
-import { Contacts, ContactSchema } from '/imports/api/contact/contact';
+import { Profiles, ProfileSchema } from '/imports/api/profile/profile';
 import { Grid, Segment, Header } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
@@ -34,9 +34,9 @@ class CreateProfile extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { firstName, lastName, image, description, interests, address } = data;
+    const { firstName, lastName, image, description, interests, standing, address } = data;
     const owner = Meteor.user().username;
-    Contacts.insert({ firstName, lastName, image, description, interests, address, owner }, this.insertCallback);
+    Profiles.insert({ firstName, lastName, image, description, interests, standing, address, owner }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -45,10 +45,11 @@ class CreateProfile extends React.Component {
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center" inverted>Create Your Profile</Header>
-            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={ContactSchema} onSubmit={this.submit}>
+            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={ProfileSchema} onSubmit={this.submit}>
               <Segment>
                 <TextField name='firstName'/>
                 <TextField name='lastName'/>
+                <TextField name='standing'/>
                 <TextField name='image'/>
                 <TextField name='interests'/>
                 <TextField name='address'/>

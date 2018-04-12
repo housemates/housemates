@@ -33,7 +33,7 @@ class EditProfile extends React.Component {
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center" inverted>Edit Profile</Header>
+            <Header as="h2" textAlign="center" inverted>Edit Your Profile</Header>
             <AutoForm schema={ProfileSchema} onSubmit={this.submit} model={this.props.doc}>
               <Segment>
                 <TextField name='firstName'/>
@@ -71,3 +71,5 @@ export default withTracker(({ match }) => {
     ready: subscription.ready(),
   };
 })(EditProfile);
+
+
