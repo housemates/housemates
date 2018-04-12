@@ -6,11 +6,17 @@ class Landing extends React.Component {
   render() {
     return (
         <div className='landing-background'>
+          <Grid container centered verticalAlign='center'>
+            <Grid.Column textAlign='center'>
+              <Header as 'h1' inverted>WELCOME to House Mates!</Header>
+              <Header as 'h3' inverted>If you already have a profile with us, please Login on the top right corner. Otherwise, please refer to our brief tutorial and overview of the app.</Header>
+            </Grid.Column>
+          </Grid>
           <Grid container centered stackable columns={2} verticalAlign = 'center'>
             <Grid.Column textAlign='center'>
               <Icon size='huge' name='user' inverted/>
               <Header as='h1' inverted>First Mates</Header>
-              <Header as='h3' inverted>The island of Oahu is full of potential roommates. Keep track of your Ship and the mates on board as you decide your next destination.</Header>
+              <Header as='h3' inverted>The island of Oahu is full of potential roommates. Keep track of your Ship and the Crew on board as you decide your next destination.</Header>
             </Grid.Column>
 
             <Grid.Column textAlign='center'>
