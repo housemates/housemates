@@ -15,10 +15,10 @@ class Profile extends React.Component {
               {this.props.contact.firstName} {this.props.contact.lastName}
               </Card.Header>
             <Card.Meta>
-              {this.props.contact.address}
+              Interests: {this.props.contact.interests}
               </Card.Meta>
             <Card.Description>
-              {this.props.contact.description}
+              Description: {this.props.contact.description}
               </Card.Description>
           </Card.Content>
           <Card.Content extra>
@@ -38,4 +38,4 @@ class Profile extends React.Component {
       notes: PropTypes.array.isRequired,
     };
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-        export default withRouter(Profile);
+export default withRouter(Profile);
