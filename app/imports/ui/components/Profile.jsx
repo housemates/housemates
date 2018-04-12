@@ -12,17 +12,17 @@ class Profile extends React.Component {
             <Image floated='right' size='mini' src={this.props.profile.image} />
             <Card.Header>
               {this.props.profile.firstName} {this.props.profile.lastName} ({this.props.profile.standing})
-              </Card.Header>
+            </Card.Header>
             <Card.Description>
               {this.props.profile.address}
-              </Card.Description>
+            </Card.Description>
             <Card.Meta>
               Preferred destinations:
               {this.props.profile.interests}
             </Card.Meta>
             <Card.Description>
               {this.props.profile.description}
-              </Card.Description>
+            </Card.Description>
           </Card.Content>
           <Card.Content extra>
             <Link to={`/edit/${this.props.profile._id}`}>Edit</Link>
@@ -33,9 +33,9 @@ class Profile extends React.Component {
 }
 
 /** Require a document to be passed to this component. */
-    Profile.propTypes = {
-      profile: PropTypes.object.isRequired,
-      notes: PropTypes.array.isRequired,
-    };
+Profile.propTypes = {
+  profile: PropTypes.object.isRequired,
+  notes: PropTypes.array.isRequired,
+};
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
 export default withRouter(Profile);

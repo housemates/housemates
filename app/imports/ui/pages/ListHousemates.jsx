@@ -46,3 +46,4 @@ export default withTracker(() => {
     ready: (subscription.ready() && subscription2.ready()),
   };
 })(ListHousemates);
+ 

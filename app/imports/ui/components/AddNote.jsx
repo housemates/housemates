@@ -40,16 +40,16 @@ class AddNote extends React.Component {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
     return (
-            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={NoteSchema} onSubmit={this.submit}>
-              <Segment>
-                <TextField label="Add a timestamped note" name='note'/>
-                <SubmitField value='Submit'/>
-                <ErrorsField/>
-                <HiddenField name='owner' value={this.props.owner}/>
-                <HiddenField name='profileId' value={this.props.profileId}/>
-                <HiddenField name='createdAt' value={new Date()}/>
-              </Segment>
-            </AutoForm>
+        <AutoForm ref={(ref) => { this.formRef = ref; }} schema={NoteSchema} onSubmit={this.submit}>
+          <Segment>
+            <TextField label="Add a timestamped note" name='note'/>
+            <SubmitField value='Submit'/>
+            <ErrorsField/>
+            <HiddenField name='owner' value={this.props.owner}/>
+            <HiddenField name='profileId' value={this.props.profileId}/>
+            <HiddenField name='createdAt' value={new Date()}/>
+          </Segment>
+        </AutoForm>
     );
   }
 }

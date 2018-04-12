@@ -19,8 +19,8 @@ if (Profiles.find().count() === 0) {
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Profiles', function publish() {
   if (this.userId) {
- //   const username = Meteor.users.findOne(this.userId).username;
- //   return Contacts.find({ owner: username });
+    //   const username = Meteor.users.findOne(this.userId).username;
+    //   return Contacts.find({ owner: username });
     return Profiles.find();
   }
   return this.ready();
@@ -29,8 +29,8 @@ Meteor.publish('Profiles', function publish() {
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Profile', function publish() {
   if (this.userId) {
-       const username = Meteor.users.findOne(this.userId).username;
-       return Profiles.find({ owner: username });
+    const username = Meteor.users.findOne(this.userId).username;
+    return Profiles.find({ owner: username });
   }
   return this.ready();
 });
