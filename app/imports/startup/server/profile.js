@@ -10,7 +10,7 @@ function addData(data) {
 
 /** Initialize the collection if empty. */
 if (Profiles.find().count() === 0) {
-  if (Meteor.settings.defaultContacts) {
+  if (Meteor.settings.defaultProfiles) {
     console.log('Creating default profiles.');
     Meteor.settings.defaultProfiles.map(data => addData(data));
   }
