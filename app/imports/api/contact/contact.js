@@ -11,6 +11,7 @@ const ContactSchema = new SimpleSchema({
   lastName: String,
   address: String,
   image: String,
+  interests: String,
   description: String,
   owner: String,
 }, { tracker: Tracker });
