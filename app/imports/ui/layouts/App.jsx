@@ -10,7 +10,8 @@ import Landing from '../pages/Landing';
 import ListProfiles from '../pages/ListHousemates';
 import Profile from '../pages/ViewProfile';
 import ListContactsAdmin from '../pages/ListContactsAdmin';
-import AddContact from '../pages/AddContact';
+// import AddContact from '../pages/AddContact';
+import CreateProfile from '../pages/CreateProfile';
 // import EditContact from '../pages/EditContact';
 import EditProfile from '../pages/EditProfile';
 import NotFound from '../pages/NotFound';
@@ -30,7 +31,7 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <ProtectedRoute path="/list" component={ListProfiles}/>
-              <ProtectedRoute path="/add" component={AddContact}/>
+              <ProtectedRoute path="/add" component={CreateProfile}/>
               <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/edit/:_id" component={EditProfile}/>
               <AdminProtectedRoute path="/admin" component={ListContactsAdmin}/>
