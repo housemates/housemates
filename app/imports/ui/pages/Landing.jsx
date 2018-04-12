@@ -9,7 +9,7 @@ class Landing extends React.Component {
           <Grid container centered stackable columns={2} verticalAlign = 'center'>
             <Grid.Column textAlign='center'>
               <Icon size='huge' name='user' inverted/>
-              <Header as='h1' inverted>Captains and First Mates</Header>
+              <Header as='h1' inverted>First Mates</Header>
               <Header as='h3' inverted>The island of Oahu is full of potential roommates. Keep track of your Ship and the mates on board as you decide your next destination.</Header>
             </Grid.Column>
 

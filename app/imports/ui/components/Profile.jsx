@@ -10,22 +10,26 @@ class Profile extends React.Component {
     return (
         <Card centered>
           <Card.Content>
-            <Image floated='right' size='mini' src={this.props.contact.image} />
+            <Image floated='right' size='mini' src={this.props.profile.image} />
             <Card.Header>
-              {this.props.contact.firstName} {this.props.contact.lastName}
+              {this.props.profile.firstName} {this.props.profile.lastName} ({this.props.profile.standing})
               </Card.Header>
-            <Card.Meta>
-              {this.props.contact.address}
-              </Card.Meta>
             <Card.Description>
-              {this.props.contact.description}
+              {this.props.profile.address}
+              </Card.Description>
+            <Card.Meta>
+              Preferred destinations:
+              {this.props.profile.interests}
+            </Card.Meta>
+            <Card.Description>
+              {this.props.profile.description}
               </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <Link to={`/edit/${this.props.contact._id}`}>Edit</Link>
+            <Link to={`/edit/${this.props.profile._id}`}>Edit</Link>
           </Card.Content>
           <Card.Content extra>
-            <AddNote owner={this.props.contact.owner} contactId={this.props.contact._id}/>
+            <AddNote owner={this.props.profile.owner} profileId={this.props.profile._id}/>
           </Card.Content>
         </Card>
     );
@@ -34,7 +38,7 @@ class Profile extends React.Component {
 
 /** Require a document to be passed to this component. */
     Profile.propTypes = {
-      contact: PropTypes.object.isRequired,
+      profile: PropTypes.object.isRequired,
       notes: PropTypes.array.isRequired,
     };
 /** Wrap this component in withRouter since we use the <Link> React Router element. */

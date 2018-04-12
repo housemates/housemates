@@ -1,14 +1,14 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Card, Header, Loader } from 'semantic-ui-react';
-import { Contacts } from '/imports/api/contact/contact';
+import { Profiles } from '/imports/api/profile/profile';
 import { Notes } from '/imports/api/note/note';
 import Profile from '/imports/ui/components/Profile';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class ListContacts extends React.Component {
+class ListProfiles extends React.Component {
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -19,9 +19,9 @@ class ListContacts extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center" inverted>Profile</Header>
+          <Header as="h2" textAlign="center" inverted>Your Profile</Header>
           <Card.Group>
-            {this.props.contacts.map((contact, index) => <Profile key={index} contact={contact}/>)}
+            {this.props.profiles.map((profile, index) => <Profile key={index} profile={profile}/>)}
           </Card.Group>
         </Container>
     );
@@ -29,8 +29,8 @@ class ListContacts extends React.Component {
 }
 
 /** Require an array of Stuff documents in the props. */
-ListContacts.propTypes = {
-  contacts: PropTypes.array.isRequired,
+ListProfiles.propTypes = {
+  profiles: PropTypes.array.isRequired,
   notes: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -41,8 +41,8 @@ export default withTracker(() => {
   const subscription = Meteor.subscribe('Profile');
   const subscription2 = Meteor.subscribe('Notes');
   return {
-    contacts: Contacts.find({}).fetch(),
+    profiles: Profiles.find({}).fetch(),
     notes: Notes.find({}).fetch(),
     ready: (subscription.ready() && subscription2.ready()),
   };
-})(ListContacts);
+})(ListProfiles);

@@ -1,3 +1,3 @@
 import './accounts.js';
-import './contact.js';
+import './profile.js';
 import './note.js';

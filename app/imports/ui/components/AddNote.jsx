@@ -33,8 +33,8 @@ class AddNote extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { note, owner, contactId, createdAt } = data;
-    Notes.insert({ note, owner, contactId, createdAt }, this.insertCallback);
+    const { note, owner, profileId, createdAt } = data;
+    Notes.insert({ note, owner, profileId, createdAt }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -46,7 +46,7 @@ class AddNote extends React.Component {
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value={this.props.owner}/>
-                <HiddenField name='contactId' value={this.props.contactId}/>
+                <HiddenField name='profileId' value={this.props.profileId}/>
                 <HiddenField name='createdAt' value={new Date()}/>
               </Segment>
             </AutoForm>
@@ -55,7 +55,7 @@ class AddNote extends React.Component {
 }
 
 AddNote.propTypes = {
-  contactId: PropTypes.object.isRequired,
+  profileId: PropTypes.object.isRequired,
   owner: PropTypes.object.isRequired,
 };
 
