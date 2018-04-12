@@ -11,7 +11,8 @@ import ListProfiles from '../pages/ListHousemates';
 import Profile from '../pages/ViewProfile';
 import ListContactsAdmin from '../pages/ListContactsAdmin';
 import AddContact from '../pages/AddContact';
-import EditContact from '../pages/EditContact';
+// import EditContact from '../pages/EditContact';
+import EditProfile from '../pages/EditProfile';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -31,7 +32,7 @@ class App extends React.Component {
               <ProtectedRoute path="/list" component={ListProfiles}/>
               <ProtectedRoute path="/add" component={AddContact}/>
               <ProtectedRoute path="/profile" component={Profile}/>
-              <ProtectedRoute path="/edit/:_id" component={EditContact}/>
+              <ProtectedRoute path="/edit/:_id" component={EditProfile}/>
               <AdminProtectedRoute path="/admin" component={ListContactsAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
