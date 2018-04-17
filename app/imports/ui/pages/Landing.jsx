@@ -8,8 +8,7 @@ class Landing extends React.Component {
         <div className='landing-background'>
           <Grid container centered verticalAlign='center'>
             <Grid.Column textAlign='center'>
-              <Header as 'h1' inverted>WELCOME to House Mates!</Header>
-              <Header as 'h3' inverted>If you already have a profile with us, please Login on the top right corner. Otherwise, please refer to our brief tutorial and overview of the app.</Header>
+              <span>&nbsp;&nbsp;</span>
             </Grid.Column>
           </Grid>
           <Grid container centered stackable columns={2} verticalAlign = 'center'>

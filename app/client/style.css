@@ -4,3 +4,9 @@
   height: 450px;
   /*width: cover;*/
 }
+.landing-background-2 {
+  background: url('/images/tutorial.background.png') no-repeat center center fixed;
+  background-size: cover;
+  height: 500px;
+  /*width: cover;*/
+}
