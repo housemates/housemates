@@ -7,24 +7,26 @@ import { withRouter, Link } from 'react-router-dom';
 class Profile extends React.Component {
   render() {
     return (
-        <Card centered>
+        <Card fluid>
           <Card.Content>
-            <Image floated='right' size='mini' src={this.props.profile.image} />
-            <Card.Header>
+            <Image floated='left' size='small' src={this.props.profile.image} />
+            <Card.Header as='h1'>
               {this.props.profile.firstName} {this.props.profile.lastName} ({this.props.profile.standing})
             </Card.Header>
-            <Card.Description>
-              {this.props.profile.address}
+            <Card.Description as='h3'>
+              Contact:&nbsp;
+              {this.props.profile.contactInfo}
             </Card.Description>
-            <Card.Meta>
-              Preferred destinations:
-              {this.props.profile.interests}
-            </Card.Meta>
-            <Card.Description>
+            <Card.Description as='h3'>
+              Preferred destinations:&nbsp;
+              {this.props.profile.preferredDestinations}
+            </Card.Description>
+            <Card.Description as='h3'>
+              Description:&nbsp;
               {this.props.profile.description}
             </Card.Description>
           </Card.Content>
-          <Card.Content extra>
+          <Card.Content>
             <Link to={`/edit/${this.props.profile._id}`}>Edit</Link>
           </Card.Content>
         </Card>

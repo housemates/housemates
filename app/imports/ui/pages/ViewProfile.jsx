@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Header, Loader } from 'semantic-ui-react';
+import { Card, Loader, Header, Container } from 'semantic-ui-react';
 import { Profiles } from '/imports/api/profile/profile';
 import { Notes } from '/imports/api/note/note';
 import Profile from '/imports/ui/components/Profile';
@@ -19,11 +19,16 @@ class ListProfiles extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center" inverted>Your Profile</Header>
-          <Card.Group>
-            {this.props.profiles.map((profile, index) => <Profile key={index} profile={profile}/>)}
-          </Card.Group>
+              <Header as="h2" textAlign="center" inverted>Your Profile</Header>
+              <Card.Group >
+                <Card fluid>
+                  <Card.Description>
+                    {this.props.profiles.map((profile, index) => <Profile key={index} profile={profile}/>)}
+                  </Card.Description>
+                </Card>
+              </Card.Group>
         </Container>
+
     );
   }
 }

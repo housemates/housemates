@@ -11,6 +11,8 @@ const ProfileSchema = new SimpleSchema({
   lastName: String,
   address: String,
   standing: String,
+  contactInfo: String,
+  preferredDestinations: String,
   image: String,
   interests: String,
   description: String,

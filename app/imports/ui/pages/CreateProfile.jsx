@@ -33,10 +33,10 @@ class CreateProfile extends React.Component {
   }
 
   /** On submit, insert the data. */
-  submit(data) {
-    const { firstName, lastName, image, description, interests, standing, address } = data;
-    const owner = Meteor.user().username;
-    Profiles.insert({ firstName, lastName, image, description, interests, standing, address, owner }, this.insertCallback);
+  submit(data) { // eslint-disable-next-line
+    const { firstName, lastName, image, description, interests, standing, address, contactInfo, preferredDestinations } = data;
+    const owner = Meteor.user().username;// eslint-disable-next-line
+    Profiles.insert({ firstName, lastName, image, description, interests, standing, address, contactInfo, preferredDestinations, owner }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -49,10 +49,12 @@ class CreateProfile extends React.Component {
               <Segment>
                 <TextField name='firstName'/>
                 <TextField name='lastName'/>
+                <TextField name='contactInfo'/>
                 <TextField name='standing'/>
                 <TextField name='image'/>
-                <TextField name='interests'/>
-                <TextField name='address'/>
+                <TextField name='preferredDestinations'/>
+                <HiddenField name='address' value='faker'/>
+                <HiddenField name='interests' value='fake'/>
                 <LongTextField name='description'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
