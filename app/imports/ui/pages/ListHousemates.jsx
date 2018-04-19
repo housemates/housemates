@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Header, Loader } from 'semantic-ui-react';
+import { Container, Card, Header, Loader, Search, Label } from 'semantic-ui-react';
 import { Profiles } from '/imports/api/profile/profile';
 import { Notes } from '/imports/api/note/note';
 import Housemates from '/imports/ui/components/Housemates';
@@ -10,6 +11,30 @@ import PropTypes from 'prop-types';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListHousemates extends React.Component {
 
+  componentWillMount() {
+    this.resetComponent();
+  }
+
+  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' });
+
+  handleResultSelect = (e, { result }) => this.setState({ value: result.interests });
+
+  handleSearchChange = (e, { value }) => {
+    this.setState({ isLoading: true, value });
+
+    setTimeout(() => {
+      if (this.state.value.length < 1) return this.resetComponent();
+
+      const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
+      const isMatch = result => re.test(result.interests);
+
+      this.setState({
+        isLoading: false,
+        results: _.filter(this.props.profiles, isMatch),
+      });
+    }, 300);
+  };
+
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader>Getting data</Loader>;
@@ -17,9 +42,31 @@ class ListHousemates extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    const resultRenderer = ({ firstName }) =>
+        <Label color='blue' content={firstName} tag/>;
+
+    resultRenderer.propTypes = {
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      address: PropTypes.string,
+      image: PropTypes.string,
+      description: PropTypes.string,
+      interests: PropTypes.string,
+      standing: PropTypes.string,
+    };
+    const { isLoading, value, results } = this.state;
     return (
         <Container>
           <Header as="h2" textAlign="center" inverted>List Housemates</Header>
+          <Search
+              loading={isLoading}
+              onResultSelect={this.handleResultSelect}
+              onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+              results={results}
+              value={value}
+              resultRenderer={resultRenderer}
+              {...this.props}
+          />
           <Card.Group>
             {this.props.profiles.map((profile, index) => <Housemates key={index} profile={profile}/>)}
           </Card.Group>
@@ -46,4 +93,3 @@ export default withTracker(() => {
     ready: (subscription.ready() && subscription2.ready()),
   };
 })(ListHousemates);
- 
