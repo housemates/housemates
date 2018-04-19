@@ -1,18 +1,25 @@
 {
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme" }],
+    { "email": "john@foo.com", "password": "changeme" }
+  ],
+
   "defaultProfiles": [
-    { "firstName": "Philip", "lastName": "Johnson", "address": "POST 307",
-      "image": "https://philipmjohnson.github.io/images/philip2.jpeg", "owner": "john@foo.com",
-      "description": "I am a Professor of Information and Computer Sciences at the University of Hawaii.",
-      "standing": "Professor", "interests": "Ewa Beach"},
-    { "firstName": "Henri",  "lastName": "Casanova", "address": "POST 307, University of Hawaii",
-      "image": "https://avatars0.githubusercontent.com/u/7494478?s=460&v=4",  "owner": "john@foo.com",
-      "description": "I am originally from France.", "standing": "Professor", "interests": "Hawaii Kai" }],
-  "galaxy.meteor.com": {
-    "env": {
-      "MONGO_URL": "mongodb://jganibi:01232045W35tBr0Ok@ds243059.mlab.com:43059/housemates"
+    {
+      "firstName": "Philip", "lastName": "Johnson", "address": "POST 307, University of Hawaii",
+      "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
+      "description": "I am a Professor of Information and Computer Sciences at the University of Hawaii, Director of the Collaborative Software Development Laboratory, and the CEO of OpenPowerQuality.com.",
+      "preferredDestinations": "Hawaii Kai, Kailua",
+      "standing": "Professor",
+      "contactInfo": "(777) 666-0123"
+    },
+    {
+      "firstName": "Henri", "lastName": "Casanova", "address": "POST 307, University of Hawaii",
+      "image": "https://avatars0.githubusercontent.com/u/7494478?s=460&v=4",
+      "description": "I am originally from France. I maintain a list of reports from my surf sessions. I have proof that I ran the Hana relay with an actual Team.",
+      "preferredDestinations": "Ewa Beach, Waipahu",
+      "standing": "Professor",
+      "contactInfo": "(666) 777-1234"
     }
-  }
+  ]
 }

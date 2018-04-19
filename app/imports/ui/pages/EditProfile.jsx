@@ -16,9 +16,10 @@ import PropTypes from 'prop-types';
 class EditProfile extends React.Component {
 
   /** On successful submit, insert the data. */
-  submit(data) {
-    const { firstName, lastName, image, description, interests, standing, _id } = data;
-    Profiles.update(_id, { $set: { firstName, lastName, image, description, standing, interests } }, (error) => (error ?
+  submit(data) { // eslint-disable-next-line
+    const { firstName, lastName, image, description, interests, standing, contactInfo, preferredDestinations, _id } = data;
+    // eslint-disable-next-line
+    Profiles.update(_id, { $set: { firstName, lastName, image, description, standing, interests, contactInfo, preferredDestinations } }, (error) => (error ?
         Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
         Bert.alert({ type: 'success', message: 'Update succeeded' })));
   }
@@ -38,8 +39,9 @@ class EditProfile extends React.Component {
               <Segment>
                 <TextField name='firstName'/>
                 <TextField name='lastName'/>
+                <TextField name='contactInfo'/>
                 <TextField name='image'/>
-                <TextField name='interests'/>
+                <TextField name='preferredDestinations'/>
                 <TextField name='standing'/>
                 <LongTextField name='description'/>
                 <SubmitField value='Submit'/>
@@ -71,5 +73,3 @@ export default withTracker(({ match }) => {
     ready: subscription.ready(),
   };
 })(EditProfile);
-
-

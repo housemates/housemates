@@ -7,21 +7,23 @@ import { withRouter } from 'react-router-dom';
 class Housemates extends React.Component {
   render() {
     return (
-        <Card>
+        <Card fluid>
           <Card.Content>
-            <Image floated='right' size='mini' src={this.props.profile.image} />
-            <Card.Header>
+            <Image floated='left' size='small' src={this.props.profile.image} />
+            <Card.Header as='h1'>
               {this.props.profile.firstName} {this.props.profile.lastName} ({this.props.profile.standing})
             </Card.Header>
-            <Card.Meta>
-              {this.props.profile.address}
-            </Card.Meta>
-            <Card.Description>
-              {this.props.profile.description}
+            <Card.Header as='h3'>
+              Contact:&nbsp;<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.profile.contactInfo}
+            </Card.Header>
+            <Card.Description as='h3'>
+              Description:&nbsp;<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.profile.description}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            Preferred destinations: {this.props.profile.interests}
+            Preferred destinations:&nbsp; {this.props.profile.preferredDestinations}
           </Card.Content>
         </Card>
     );
