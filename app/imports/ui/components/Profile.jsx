@@ -13,10 +13,10 @@ class Profile extends React.Component {
             <Card.Header as='h1'>
               {this.props.profile.firstName} {this.props.profile.lastName} ({this.props.profile.standing})
             </Card.Header>
-            <Card.Description as='h3'>
+            <Card.Header as='h3'>
               Contact:&nbsp;
               {this.props.profile.contactInfo}
-            </Card.Description>
+            </Card.Header>
             <Card.Description as='h3'>
               Preferred destinations:&nbsp;
               {this.props.profile.preferredDestinations}
