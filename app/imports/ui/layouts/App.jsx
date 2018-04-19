@@ -12,6 +12,7 @@ import Profile from '../pages/ViewProfile';
 import ListContactsAdmin from '../pages/ListContactsAdmin';
 // import AddContact from '../pages/AddContact';
 import CreateProfile from '../pages/CreateProfile';
+import Tutorial from '../pages/Tutorial';
 // import EditContact from '../pages/EditContact';
 import EditProfile from '../pages/EditProfile';
 import NotFound from '../pages/NotFound';
@@ -30,6 +31,7 @@ class App extends React.Component {
               <Route exact path="/" component={Landing}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
+              <Route exact path="/tutorial" component={Tutorial}/>
               <ProtectedRoute path="/list" component={ListProfiles}/>
               <ProtectedRoute path="/add" component={CreateProfile}/>
               <ProtectedRoute path="/profile" component={Profile}/>

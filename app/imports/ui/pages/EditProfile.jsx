@@ -72,4 +72,5 @@ export default withTracker(({ match }) => {
     doc: Profiles.findOne(documentId),
     ready: subscription.ready(),
   };
+
 })(EditProfile);
