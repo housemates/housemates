@@ -14,16 +14,16 @@ class Profile extends React.Component {
               {this.props.profile.firstName} {this.props.profile.lastName} ({this.props.profile.standing})
             </Card.Header>
             <Card.Header as='h3'>
-              Contact:&nbsp;
-              {this.props.profile.contactInfo}
+              Contact:&nbsp;<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.profile.contactInfo}
             </Card.Header>
             <Card.Description as='h3'>
-              Preferred destinations:&nbsp;
-              {this.props.profile.preferredDestinations}
+              Preferred destinations:&nbsp;<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.profile.preferredDestinations}
             </Card.Description>
             <Card.Description as='h3'>
-              Description:&nbsp;
-              {this.props.profile.description}
+              Description:&nbsp;<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.profile.description}
             </Card.Description>
           </Card.Content>
           <Card.Content>
