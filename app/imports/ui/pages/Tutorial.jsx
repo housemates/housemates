@@ -6,7 +6,13 @@ class Tutorial extends React.Component {
   render() {
     return (
         <div className='landing-background-2'>
-          <Grid container centered stackable rows={2} verticalAlign='center'>
+          <Grid container centered stackable rows={3} verticalAlign='center'>
+            <Grid.Row>
+              <span>&nbsp;&nbsp;</span>
+            </Grid.Row>
+            <Grid.Row>
+              <span>&nbsp;&nbsp;</span>
+            </Grid.Row>
             <Grid.Row textAlign='center'>
               <Grid container centered stackable columns={3} verticalAlign='center'>
                 <Grid.Column>
