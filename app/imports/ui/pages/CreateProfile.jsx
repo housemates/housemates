@@ -9,6 +9,8 @@ import HiddenField from 'uniforms-semantic/HiddenField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 /** Renders the Page for adding a document. */
 class CreateProfile extends React.Component {
@@ -19,6 +21,7 @@ class CreateProfile extends React.Component {
     this.submit = this.submit.bind(this);
     this.render = this.render.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
+    this.state = { redirectToReferer: false };
     this.formRef = null;
   }
 
@@ -34,13 +37,21 @@ class CreateProfile extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) { // eslint-disable-next-line
+    // const { firstName, lastName, image, description, interests, standing, address, contactInfo, preferredDestinations } = data;
+    // eslint-disable-next-line
     const { firstName, lastName, image, description, interests, standing, address, contactInfo, preferredDestinations } = data;
     const owner = Meteor.user().username;// eslint-disable-next-line
     Profiles.insert({ firstName, lastName, image, description, interests, standing, address, contactInfo, preferredDestinations, owner }, this.insertCallback);
+    this.setState({ redirectToReferer: true });
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
+    const { from } = this.props.location.state || { from: { pathname: '/profile' } };
+    // if correct authentication, redirect to page instead of login screen
+    if (this.state.redirectToReferer) {
+      return <Redirect to={from}/>;
+    }
     return (
         <Grid container centered>
           <Grid.Column>
@@ -66,5 +77,10 @@ class CreateProfile extends React.Component {
     );
   }
 }
+
+/** Ensure that the React Router location object is available in case we need to redirect. */
+CreateProfile.propTypes = {
+  location: PropTypes.object,
+};
 
 export default CreateProfile;

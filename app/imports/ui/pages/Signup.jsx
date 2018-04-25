@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
+import PropTypes from 'prop-types';
+
 
 /**
  * Signup component is similar to signin component, but we attempt to create a new user instead.
@@ -10,7 +12,7 @@ export default class Signup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '' };
+    this.state = { email: '', password: '', error: '', redirectToReferer: false };
     // Ensure that 'this' is bound to this component in these two functions.
     // https://medium.freecodecamp.org/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,12 +32,19 @@ export default class Signup extends React.Component {
         this.setState({ error: err.reason });
       } else {
         // browserHistory.push('/login');
+        this.setState({ error: '', redirectToReferer: true });
       }
     });
   }
 
   /** Display the signup form. */
   render() {
+    const { from } = this.props.location.state || { from: { pathname: '/add' } };
+    // if correct authentication, redirect to page instead of login screen
+    if (this.state.redirectToReferer) {
+      return <Redirect to={from}/>;
+    }
+    // Otherwise return the Login form.
     return (
         <Container>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
@@ -84,3 +93,7 @@ export default class Signup extends React.Component {
     );
   }
 }
+/** Ensure that the React Router location object is available in case we need to redirect. */
+Signup.propTypes = {
+  location: PropTypes.object,
+};

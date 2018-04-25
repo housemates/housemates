@@ -28,7 +28,6 @@ class ListProfiles extends React.Component {
                 </Card>
               </Card.Group>
         </Container>
-
     );
   }
 }

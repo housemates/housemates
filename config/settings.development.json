@@ -12,7 +12,8 @@
       "preferredDestinations": "Hawaii Kai, Kailua",
       "standing": "Professor",
       "contactInfo": "hello",
-      "owner": "john@foo.com"
+      "owner": "john@foo.com",
+      "interests": "N/A"
     },
     {
       "firstName": "Henri", "lastName": "Casanova", "address": "POST 307, University of Hawaii",
@@ -21,7 +22,8 @@
       "preferredDestinations": "Ewa Beach, Waipahu",
       "standing": "Professor",
       "contactInfo": "world",
-      "owner": "admin@foo.com"
+      "owner": "admin@foo.com",
+      "interests": "N/A"
     },
     {
       "firstName": "Kim", "lastName": "Binsted", "address": "POST 307, University of Hawaii",
