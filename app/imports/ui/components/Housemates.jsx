@@ -1,10 +1,32 @@
 import React from 'react';
-import { Card, Image } from 'semantic-ui-react';
+import { Card, Image, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { Profiles, ProfileSchema } from '/imports/api/profile/profile';
 import { withRouter } from 'react-router-dom';
+import { Bert } from 'meteor/themeteorchef:bert';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Housemates extends React.Component {
+
+  //Implementing deletion of profile
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  deleteCallback(error) {
+    if(error) {
+      Bert.alert({ type: 'danger', message: 'Delete failed: ${error.message}' });
+    } else {
+      Bert.alert({ type: 'success', message: 'Delete succeeded' });
+    }
+  }
+
+  onClick() {
+    Profiles.remove(this.props.profile._id, this.deleteCallback);
+  }
+  //end profile deletion
+
   render() {
     return (
         <Card fluid>
@@ -24,6 +46,9 @@ class Housemates extends React.Component {
           </Card.Content>
           <Card.Content extra>
             Preferred destinations:&nbsp; {this.props.profile.preferredDestinations}
+          </Card.Content>
+          <Card.Content extra>
+            <Button basic onClick={this.onClick}>Remove from Crew</Button>
           </Card.Content>
         </Card>
     );
