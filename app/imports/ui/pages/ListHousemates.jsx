@@ -1,12 +1,22 @@
 import _ from 'lodash';
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Header, Loader, Search, Label } from 'semantic-ui-react';
+import { Container, Card, Header, Loader, Search, Label, Dropdown } from 'semantic-ui-react';
 import { Profiles } from '/imports/api/profile/profile';
 import { Notes } from '/imports/api/note/note';
 import Housemates from '/imports/ui/components/Housemates';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+
+const searchOptions = [
+    { text: 'First Name',
+      value: 'firstName' },
+
+    { text: 'Last Name',
+      value: 'lastName' },
+
+    { text: 'Interests',
+      value: 'interests' }];
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListHousemates extends React.Component {
@@ -17,7 +27,7 @@ class ListHousemates extends React.Component {
 
   resetComponent = () => this.setState({ isLoading: false, results: [], value: '' });
 
-  handleResultSelect = (e, { result }) => this.setState({ value: result.interests });
+  handleResultSelect = (e, { result }) => this.setState({ value: result.value });
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value });
@@ -26,7 +36,21 @@ class ListHousemates extends React.Component {
       if (this.state.value.length < 1) return this.resetComponent();
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
-      const isMatch = result => re.test(result.interests);
+      const isMatch = result =>
+        re.test(result.interests);
+     /*   if (searchOptions.value === 'firstName') {
+          re.test(result.firstName);
+        }
+        else if (searchOptions.value === 'lastName') {
+          re.test(result.lastName);
+        }
+        else if (searchOptions.value === 'interests') {
+          re.test(result.interests);
+        }
+        else { */
+       //   re.test(result.interests);
+        // }
+
 
       this.setState({
         isLoading: false,
@@ -58,6 +82,7 @@ class ListHousemates extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center" inverted>List Housemates</Header>
+          <Dropdown placeholder='Filter Search' selection options={searchOptions}/>
           <Search
               loading={isLoading}
               onResultSelect={this.handleResultSelect}
