@@ -8,6 +8,7 @@ import Housemates from '/imports/ui/components/Housemates';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
+// Provides the search filter options for the dropdown menu
 const searchOptions = [
     { text: 'First Name',
       value: 'firstName' },
@@ -16,7 +17,13 @@ const searchOptions = [
       value: 'lastName' },
 
     { text: 'Interests',
-      value: 'interests' }];
+      value: 'interests' },
+
+    { text: 'Preferred Destinations',
+      value: 'preferredDestinations' },
+
+    { text: 'Standing',
+      value: 'standing' }];
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListHousemates extends React.Component {
@@ -25,38 +32,102 @@ class ListHousemates extends React.Component {
     this.resetComponent();
   }
 
+  // Sets the value of this.state.filter to the value selected in the dropdown menu
+  handleDropdownChange = (e, { value }) => this.setState({ filter: value })
+
+  // Resets the search-dependent values of this.state
   resetComponent = () => this.setState({ isLoading: false, results: [], value: '' });
 
+  // Sets this.state.value to the value obtained from the search function
   handleResultSelect = (e, { result }) => this.setState({ value: result.value });
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value });
 
-    setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent();
+    if (this.state.filter === 'firstName') {
+      setTimeout(() => {
+        if (this.state.value.length < 1) return this.resetComponent();
 
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
-      const isMatch = result =>
-        re.test(result.interests);
-     /*   if (searchOptions.value === 'firstName') {
-          re.test(result.firstName);
+        const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
+        const isMatch = result => re.test(result.firstName);
+
+        this.setState({
+          isLoading: false,
+          results: _.filter(this.props.profiles, isMatch),
+        });
+      }, 300);
+    }
+
+    else if (this.state.filter === 'lastName') {
+      setTimeout(() => {
+        if (this.state.value.length < 1) return this.resetComponent();
+
+        const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
+        const isMatch = result => re.test(result.lastName);
+
+        this.setState({
+          isLoading: false,
+          results: _.filter(this.props.profiles, isMatch),
+        });
+      }, 300);
+    }
+
+    else if (this.state.filter === 'interests') {
+        setTimeout(() => {
+          if (this.state.value.length < 1) return this.resetComponent();
+
+          const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
+          const isMatch = result => re.test(result.interests);
+
+          this.setState({
+            isLoading: false,
+            results: _.filter(this.props.profiles, isMatch),
+          });
+        }, 300);
+      }
+
+      else if (this.state.filter === 'preferredDestinations') {
+          setTimeout(() => {
+            if (this.state.value.length < 1) return this.resetComponent();
+
+            const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
+            const isMatch = result => re.test(result.preferredDestinations);
+
+            this.setState({
+              isLoading: false,
+              results: _.filter(this.props.profiles, isMatch),
+            });
+          }, 300);
         }
-        else if (searchOptions.value === 'lastName') {
-          re.test(result.lastName);
-        }
-        else if (searchOptions.value === 'interests') {
-          re.test(result.interests);
-        }
-        else { */
-       //   re.test(result.interests);
-        // }
+
+        else if (this.state.filter === 'standing') {
+            setTimeout(() => {
+              if (this.state.value.length < 1) return this.resetComponent();
+
+              const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
+              const isMatch = result => re.test(result.standing);
+
+              this.setState({
+                isLoading: false,
+                results: _.filter(this.props.profiles, isMatch),
+              });
+            }, 300);
+          }
+
+     else {
+      setTimeout(() => {
+        if (this.state.value.length < 1) return this.resetComponent();
+
+        const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
+        const isMatch = result => re.test(result.preferredDestinations);
 
 
-      this.setState({
-        isLoading: false,
-        results: _.filter(this.props.profiles, isMatch),
-      });
-    }, 300);
+        this.setState({
+          isLoading: false,
+          results: _.filter(this.props.profiles, isMatch),
+        });
+      }, 300);
+    }
   };
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -66,8 +137,8 @@ class ListHousemates extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-    const resultRenderer = ({ firstName }) =>
-        <Label color='blue' content={firstName} tag/>;
+    const resultRenderer = ({ firstName, lastName }) =>
+        <Label color='blue' content={firstName + ' ' + lastName} tag/>;
 
     resultRenderer.propTypes = {
       firstName: PropTypes.string,
@@ -76,13 +147,17 @@ class ListHousemates extends React.Component {
       image: PropTypes.string,
       description: PropTypes.string,
       interests: PropTypes.string,
+      preferredDestinations: PropTypes.string,
       standing: PropTypes.string,
     };
     const { isLoading, value, results } = this.state;
     return (
         <Container>
           <Header as="h2" textAlign="center" inverted>List Housemates</Header>
-          <Dropdown placeholder='Filter Search' selection options={searchOptions}/>
+          <Dropdown placeholder='Filter Search'
+                    selection
+                    options={searchOptions}
+                    onChange={this.handleDropdownChange}/>
           <Search
               loading={isLoading}
               onResultSelect={this.handleResultSelect}
