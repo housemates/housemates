@@ -41,9 +41,11 @@ class ListHousemates extends React.Component {
   // Sets this.state.value to the value obtained from the search function
   handleResultSelect = (e, { result }) => this.setState({ value: result.value });
 
+  // Sets this.state.results to the profile value that matches the search text
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value });
 
+    // Search filter is set to "First Name"
     if (this.state.filter === 'firstName') {
       setTimeout(() => {
         if (this.state.value.length < 1) return this.resetComponent();
@@ -58,6 +60,7 @@ class ListHousemates extends React.Component {
       }, 300);
     }
 
+    // Search filter is set to "Last Name"
     else if (this.state.filter === 'lastName') {
       setTimeout(() => {
         if (this.state.value.length < 1) return this.resetComponent();
@@ -72,6 +75,7 @@ class ListHousemates extends React.Component {
       }, 300);
     }
 
+    // Search filter is set to "Interests"
     else if (this.state.filter === 'interests') {
         setTimeout(() => {
           if (this.state.value.length < 1) return this.resetComponent();
@@ -86,6 +90,7 @@ class ListHousemates extends React.Component {
         }, 300);
       }
 
+      // Search filter is set to "Preferred Destinations"
       else if (this.state.filter === 'preferredDestinations') {
           setTimeout(() => {
             if (this.state.value.length < 1) return this.resetComponent();
@@ -100,6 +105,7 @@ class ListHousemates extends React.Component {
           }, 300);
         }
 
+        // Search filter is set to "Standing"
         else if (this.state.filter === 'standing') {
             setTimeout(() => {
               if (this.state.value.length < 1) return this.resetComponent();
@@ -114,20 +120,21 @@ class ListHousemates extends React.Component {
             }, 300);
           }
 
-     else {
-      setTimeout(() => {
-        if (this.state.value.length < 1) return this.resetComponent();
+      // If no value set for the search filter, the filter is automatically set to "Preferred Destinations"
+      else {
+        setTimeout(() => {
+          if (this.state.value.length < 1) return this.resetComponent();
 
-        const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
-        const isMatch = result => re.test(result.preferredDestinations);
+          const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
+          const isMatch = result => re.test(result.preferredDestinations);
 
 
-        this.setState({
-          isLoading: false,
-          results: _.filter(this.props.profiles, isMatch),
-        });
-      }, 300);
-    }
+          this.setState({
+            isLoading: false,
+            results: _.filter(this.props.profiles, isMatch),
+          });
+        }, 300);
+      }
   };
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
