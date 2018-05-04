@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Card, Header, Loader, Search, Label, Dropdown } from 'semantic-ui-react';
-import { Profiles } from '/imports/api/profile/profile';
+import { Mates } from '/imports/api/profile/housemate';
 import { Notes } from '/imports/api/note/note';
 import Housemates from '/imports/ui/components/Housemates';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -192,10 +192,10 @@ ListHousemates.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Profiles');
+  const subscription = Meteor.subscribe('Mates');
   const subscription2 = Meteor.subscribe('Notes');
   return {
-    profiles: Profiles.find({}).fetch(),
+    profiles: Mates.find({}).fetch(),
     notes: Notes.find({}).fetch(),
     ready: (subscription.ready() && subscription2.ready()),
   };

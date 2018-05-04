@@ -1,10 +1,30 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
+import { Mates, HousemateSchema } from '/imports/api/profile/housemate';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Profile extends React.Component {
+//Implementing deletion of profile
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  insertCallback(error) {
+    if(error) {
+      Bert.alert({ type: 'danger', message: 'Add failed: ${error.message}' });
+    } else {
+      Bert.alert({ type: 'success', message: 'Add succeeded' });
+    }
+  }
+
+  onClick() {
+    Mates.insert(this.props.profile._id, this.insertCallback);
+  }
+  //end profile add
+
   render() {
     return (
         <Card fluid>
@@ -26,8 +46,8 @@ class Profile extends React.Component {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.profile.description}
             </Card.Description>
           </Card.Content>
-          <Card.Content>
-            <Link to={`/edit/${this.props.profile._id}`}>Edit</Link>
+          <Card.Content extra>
+            <Button basic onClick={this.onClick}>Remove from Crew</Button>
           </Card.Content>
         </Card>
     );
