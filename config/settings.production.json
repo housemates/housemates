@@ -11,7 +11,8 @@
       "description": "I am a Professor of Information and Computer Sciences at the University of Hawaii, Director of the Collaborative Software Development Laboratory, and the CEO of OpenPowerQuality.com.",
       "preferredDestinations": "Hawaii Kai, Kailua",
       "standing": "Professor",
-      "contactInfo": "(777) 666-0123"
+      "contactInfo": "(777) 666-0123",
+      "interests": "none"
     },
     {
       "firstName": "Henri", "lastName": "Casanova", "address": "POST 307, University of Hawaii",
@@ -19,7 +20,13 @@
       "description": "I am originally from France. I maintain a list of reports from my surf sessions. I have proof that I ran the Hana relay with an actual Team.",
       "preferredDestinations": "Ewa Beach, Waipahu",
       "standing": "Professor",
-      "contactInfo": "(666) 777-1234"
+      "contactInfo": "(666) 777-1234",
+      "interests": "none"
     }
-  ]
+  ],
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://jganibi:01232045W35tBr0Ok@ds243059.mlab.com:43059/housemates"
+    }
+  }
 }

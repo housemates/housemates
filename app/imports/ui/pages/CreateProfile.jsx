@@ -39,9 +39,9 @@ class CreateProfile extends React.Component {
   submit(data) { // eslint-disable-next-line
     // const { firstName, lastName, image, description, interests, standing, address, contactInfo, preferredDestinations } = data;
     // eslint-disable-next-line
-    const { firstName, lastName, image, description, interests, standing, address, contactInfo, preferredDestinations } = data;
+    const { firstName, lastName, image, description, interests, standing, contactInfo, preferredDestinations } = data;
     const owner = Meteor.user().username;// eslint-disable-next-line
-    Profiles.insert({ firstName, lastName, image, description, interests, standing, address, contactInfo, preferredDestinations, owner }, this.insertCallback);
+    Profiles.insert({ firstName, lastName, image, description, interests, standing, contactInfo, preferredDestinations, owner }, this.insertCallback);
     this.setState({ redirectToReferer: true });
   }
 
@@ -64,7 +64,6 @@ class CreateProfile extends React.Component {
                 <TextField name='standing'/>
                 <TextField name='image'/>
                 <TextField name='preferredDestinations'/>
-                <HiddenField name='address' value='faker'/>
                 <HiddenField name='interests' value='fake'/>
                 <LongTextField name='description'/>
                 <SubmitField value='Submit'/>
